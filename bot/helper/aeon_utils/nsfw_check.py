@@ -5,6 +5,8 @@ nsfw_keywords = [
     "onlyfans",
     "nsfw",
     "Brazzers",
+    "HDTC",
+    "PreDVDRip",
     "adult",
     "xnxx",
     "xvideos",
