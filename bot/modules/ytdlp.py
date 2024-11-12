@@ -287,7 +287,6 @@ async def _mdisk(link, name):
 
 @new_task
 async def _ytdl(client, message, is_leech=False, same_dir=None, bulk=[]):
-    await send_react(message)
     text = message.text.split("\n")
     input_list = text[0].split(" ")
     qual = ""
@@ -371,7 +370,7 @@ async def _ytdl(client, message, is_leech=False, same_dir=None, bulk=[]):
     async def __run_multi():
         if multi <= 1:
             return
-        await sleep(5)
+        await sleep(2)
         if len(bulk) != 0:
             msg = input_list[:1]
             msg.append(f"{bulk[0]} -i {multi - 1}")
@@ -390,7 +389,7 @@ async def _ytdl(client, message, is_leech=False, same_dir=None, bulk=[]):
         if folder_name:
             same_dir["tasks"].add(nextmsg.id)
         nextmsg.from_user = message.from_user
-        await sleep(5)
+        await sleep(2)
         _ytdl(client, nextmsg, is_leech, same_dir, bulk)
 
     path = f"/usr/src/app/downloads/{message.id}{folder_name}"
@@ -422,7 +421,7 @@ async def _ytdl(client, message, is_leech=False, same_dir=None, bulk=[]):
     error_msg = []
     error_button = None
     if await nsfw_precheck(message):
-        error_msg.extend(["NSFW detected"])
+        error_msg.extend(["This Content Not Allowed"])
     task_utilis_msg, error_button = await task_utils(message)
     if task_utilis_msg:
         error_msg.extend(task_utilis_msg)
