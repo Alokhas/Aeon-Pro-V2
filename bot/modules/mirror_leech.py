@@ -28,7 +28,7 @@ from bot.helper.ext_utils.help_strings import MIRROR_HELP_MESSAGE
 from bot.helper.ext_utils.task_manager import task_utils
 from bot.helper.telegram_helper.filters import CustomFilters
 from bot.helper.listeners.tasks_listener import MirrorLeechListener
-from bot.helper.telegram_helper.bot_commands import Bomessds
+from bot.helper.telegram_helper.bot_commands import BotCommands
 from bot.helper.telegram_helper.message_utils import (
     delete_links,
     edit_message,
@@ -66,7 +66,6 @@ from bot.helper.mirror_leech_utils.download_utils.direct_link_generator import (
 async def _mirror_leech(
     client, message, is_qbit=False, is_leech=False, same_dir=None, bulk=[]
 ):
-    await send_react(message
     user = message.from_user or message.sender_chat
     user_id = user.id
     user_dict = user_data.get(user_id, {})
