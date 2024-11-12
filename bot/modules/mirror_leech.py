@@ -24,12 +24,11 @@ from bot.helper.ext_utils.bot_utils import (
 from bot.helper.ext_utils.bulk_links import extract_bulk_links
 from bot.helper.ext_utils.exceptions import DirectDownloadLinkError
 from bot.helper.aeon_utils.nsfw_check import nsfw_precheck
-from bot.helper.aeon_utils.send_react import send_react
 from bot.helper.ext_utils.help_strings import MIRROR_HELP_MESSAGE
 from bot.helper.ext_utils.task_manager import task_utils
 from bot.helper.telegram_helper.filters import CustomFilters
 from bot.helper.listeners.tasks_listener import MirrorLeechListener
-from bot.helper.telegram_helper.bot_commands import BotCommands
+from bot.helper.telegram_helper.bot_commands import Bomessds
 from bot.helper.telegram_helper.message_utils import (
     delete_links,
     edit_message,
@@ -67,7 +66,7 @@ from bot.helper.mirror_leech_utils.download_utils.direct_link_generator import (
 async def _mirror_leech(
     client, message, is_qbit=False, is_leech=False, same_dir=None, bulk=[]
 ):
-    await send_react(message)
+    await send_react(message
     user = message.from_user or message.sender_chat
     user_id = user.id
     user_dict = user_data.get(user_id, {})
@@ -197,7 +196,7 @@ async def _mirror_leech(
     async def __run_multi():
         if multi <= 1:
             return
-        await sleep(5)
+        await sleep(2)
         if len(bulk) != 0:
             msg = input_list[:1]
             msg.append(f"{bulk[0]} -i {multi - 1}")
@@ -216,7 +215,7 @@ async def _mirror_leech(
         if folder_name:
             same_dir["tasks"].add(nextmsg.id)
         nextmsg.from_user = message.from_user
-        await sleep(5)
+        await sleep(1)
         _mirror_leech(client, nextmsg, is_qbit, is_leech, same_dir, bulk)
 
     __run_multi()
@@ -283,7 +282,7 @@ async def _mirror_leech(
     error_msg = []
     error_button = None
     if await nsfw_precheck(message):
-        error_msg.extend(["NSFW detected"])
+        error_msg.extend(["This Content Not Allowed"])
     task_utilis_msg, error_button = await task_utils(message)
     if task_utilis_msg:
         error_msg.extend(task_utilis_msg)
